@@ -6,7 +6,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QLabel *label = new QLabel("Hello World");
+    QLabel *label = new QLabel("Xiao World");
     MainWindow w;
     w.show();
     label->show();
