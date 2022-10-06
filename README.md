@@ -1,1 +1,1 @@
-# C-note-taking-app
+# C++-note-taking-app
