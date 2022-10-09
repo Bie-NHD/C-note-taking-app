@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>Vector.png</file>
+    </qresource>
+</RCC>
