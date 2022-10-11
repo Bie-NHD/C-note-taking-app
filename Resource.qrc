@@ -1,5 +1,11 @@
 <RCC>
     <qresource prefix="/images">
         <file>Vector.png</file>
+        <file>Vector (1).png</file>
+        <file>Vector (2).png</file>
+        <file>Vector (3).png</file>
+        <file>Vector (4).png</file>
+        <file>Vector (5).png</file>
+        <file>Vector (6).png</file>
     </qresource>
 </RCC>

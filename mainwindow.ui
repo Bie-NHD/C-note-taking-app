@@ -17,7 +17,7 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>140</x>
       <y>40</y>
       <width>941</width>
       <height>501</height>
@@ -29,11 +29,17 @@
     <property name="frameShadow">
      <enum>QFrame::Raised</enum>
     </property>
+    <property name="lineWidth">
+     <number>2</number>
+    </property>
+    <property name="midLineWidth">
+     <number>1</number>
+    </property>
     <widget class="QWidget" name="verticalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>60</x>
-       <y>50</y>
+       <x>10</x>
+       <y>60</y>
        <width>181</width>
        <height>371</height>
       </rect>
@@ -325,6 +331,9 @@
           <height>50</height>
          </size>
         </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
         </property>
@@ -393,7 +402,7 @@
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.png</normalon>
+            <normalon>:/images/Vector (1).png</normalon>
            </iconset>
           </property>
           <property name="flat">
@@ -414,7 +423,7 @@
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.png</normalon>
+            <normalon>:/images/Vector (2).png</normalon>
            </iconset>
           </property>
           <property name="flat">
@@ -435,7 +444,7 @@
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.png</normalon>
+            <normalon>:/images/Vector (3).png</normalon>
            </iconset>
           </property>
           <property name="flat">
@@ -456,7 +465,7 @@
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.png</normalon>
+            <normalon>:/images/Vector (4).png</normalon>
            </iconset>
           </property>
           <property name="flat">
@@ -477,7 +486,7 @@
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.png</normalon>
+            <normalon>:/images/Vector (5).png</normalon>
            </iconset>
           </property>
           <property name="flat">
@@ -502,7 +511,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
           </property>
           <property name="icon">
            <iconset>
-            <normalon>../../../../Downloads/Vector.svg</normalon>
+            <normalon>:/images/Vector (6).png</normalon>
             <activeon>../../../../Downloads/Vector.png</activeon>
            </iconset>
           </property>
