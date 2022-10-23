@@ -62,6 +62,7 @@ Thumbs.db
 # MinGW generated files
 *.Debug
 *.Release
+*.ini
 
 # Python byte code
 *.pyc
