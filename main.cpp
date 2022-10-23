@@ -2,13 +2,18 @@
 
 #include <QLabel>
 #include <QApplication>
+#include <QFrame>
+#include <QPlainTextEdit>
 
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-    QLabel *label = new QLabel("Xiao World 2");
     MainWindow w;
+    QLabel *label;
+    w.getTitle()->zoomIn(16);
+
+
+
     w.show();
-    label->show();
     return app.exec();
 }

@@ -7,7 +7,10 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 }
-
+QPlainTextEdit* MainWindow::getTitle()
+{
+    return ui->plainTextEdit;
+}
 MainWindow::~MainWindow()
 {
     delete ui;
