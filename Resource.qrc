@@ -8,4 +8,8 @@
         <file>Vector (5).png</file>
         <file>Vector (6).png</file>
     </qresource>
+    <qresource prefix="/Font">
+        <file>Fonts/Poppins-Light.ttf</file>
+        <file>Fonts/Poppins-Regular.ttf</file>
+    </qresource>
 </RCC>
