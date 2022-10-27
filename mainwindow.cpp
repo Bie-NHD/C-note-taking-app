@@ -20,21 +20,18 @@ MainWindow::~MainWindow()
 void MainWindow::on_pushButton_clicked()
 {
     //Create a database
-    database = QSqlDatabase::addDatabase("QMYSQL");
-    database.setHostName("127.0.0.1");
-    database.setUserName("root");
-    database.setPassword("");
-    database.setDatabaseName("note");
+    QSqlDatabase database = QSqlDatabase::addDatabase("QSQLITE");
+
+    database.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
     //Received data
     if(database.open()) {
 
         QString password = ui->password->text();
 
-
     //Query
 
     QSqlQuery qry;
-    qry.prepare("INSERT INTO password (password)"
+    qry.prepare("INSERT INTO pass (password)"
                 "VALUES (:password)");
 
     qry.bindValue(":password", password);
@@ -45,7 +42,8 @@ void MainWindow::on_pushButton_clicked()
 
     } else {
 
-        QMessageBox::information(this, "Not Inserted", "Data inserted unsuccessfully");
+        QMessageBox::information(this, "Not Inserted", "Data is not Inserted");
+
 
     }
 
