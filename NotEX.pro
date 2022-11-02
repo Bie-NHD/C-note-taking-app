@@ -1,4 +1,5 @@
 QT       += core gui
+QT += svg
 # Using CORE & GUI Libraries
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 # Using wigets as an extension

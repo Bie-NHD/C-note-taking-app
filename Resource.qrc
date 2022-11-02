@@ -8,8 +8,31 @@
         <file>Vector (5).png</file>
         <file>Vector (6).png</file>
     </qresource>
-    <qresource prefix="/Font">
-        <file>Fonts/Poppins-Light.ttf</file>
-        <file>Fonts/Poppins-Regular.ttf</file>
+    <qresource prefix="/Fonts">
+        <file>materials/Fonts/Poppins-Light.ttf</file>
+        <file>materials/Fonts/Poppins-Regular.ttf</file>
+    </qresource>
+    <qresource prefix="/SVG">
+        <file>materials/SVG/format_align_center.svg</file>
+        <file>materials/SVG/format_align_left.svg</file>
+        <file>materials/SVG/format_align_right.svg</file>
+        <file>materials/SVG/format_bold.svg</file>
+        <file>materials/SVG/format_italic.svg</file>
+        <file>materials/SVG/format_list_bulleted.svg</file>
+        <file>materials/SVG/format_list_numbered.svg</file>
+        <file>materials/SVG/format_underlined.svg</file>
+        <file>materials/SVG/key.svg</file>
+        <file>materials/SVG/lock.svg</file>
+        <file>materials/SVG/lock_open.svg</file>
+        <file>materials/SVG/menu.svg</file>
+        <file>materials/SVG/file_open.svg</file>
+        <file>materials/SVG/content_copy.svg</file>
+        <file>materials/SVG/save.svg</file>
+        <file>materials/SVG/note_add.svg</file>
+        <file>materials/SVG/edit_square.svg</file>
+        <file>materials/SVG/add_box.svg</file>
+        <file>materials/SVG/check_box.svg</file>
+        <file>materials/SVG/alarm_add.svg</file>
+        <file>materials/SVG/alarm.svg</file>
     </qresource>
 </RCC>

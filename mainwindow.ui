@@ -6,12 +6,16 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1082</width>
-    <height>633</height>
+    <width>934</width>
+    <height>501</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">font: 13pt &quot;Poppins&quot;;
+background-color: #53545c</string>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -20,8 +24,8 @@
    <widget class="QFrame" name="frame">
     <property name="geometry">
      <rect>
-      <x>70</x>
-      <y>60</y>
+      <x>0</x>
+      <y>-10</y>
       <width>941</width>
       <height>501</height>
      </rect>
@@ -38,34 +42,7 @@
     <property name="midLineWidth">
      <number>1</number>
     </property>
-    <widget class="QWidget" name="verticalLayoutWidget">
-     <property name="geometry">
-      <rect>
-       <x>10</x>
-       <y>40</y>
-       <width>371</width>
-       <height>391</height>
-      </rect>
-     </property>
-     <layout class="QVBoxLayout" name="verticalLayout">
-      <property name="spacing">
-       <number>15</number>
-      </property>
-      <property name="leftMargin">
-       <number>10</number>
-      </property>
-      <property name="topMargin">
-       <number>10</number>
-      </property>
-      <property name="rightMargin">
-       <number>10</number>
-      </property>
-      <property name="bottomMargin">
-       <number>10</number>
-      </property>
-     </layout>
-    </widget>
-    <widget class="QWidget" name="verticalLayoutWidget_2">
+    <widget class="QFrame" name="verticalFrame_2">
      <property name="geometry">
       <rect>
        <x>400</x>
@@ -74,7 +51,11 @@
        <height>391</height>
       </rect>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,5,1">
+     <property name="styleSheet">
+      <string notr="true">
+color: white;</string>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,0,0">
       <item>
        <widget class="QPlainTextEdit" name="plainTextEdit">
         <property name="sizePolicy">
@@ -89,8 +70,16 @@
           <height>50</height>
          </size>
         </property>
+        <property name="cursor" stdset="0">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#3b3c42;
+ border-radius: 10px;
+padding: .2em;</string>
+        </property>
         <property name="frameShape">
-         <enum>QFrame::Box</enum>
+         <enum>QFrame::StyledPanel</enum>
         </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarAlwaysOff</enum>
@@ -111,6 +100,17 @@
       </item>
       <item>
        <widget class="QTextEdit" name="textEdit">
+        <property name="cursor" stdset="0">
+         <cursorShape>IBeamCursor</cursorShape>
+        </property>
+        <property name="styleSheet">
+         <string notr="true">background-color:#3b3c42;
+ border-radius: 10px;
+padding: .2em;</string>
+        </property>
+        <property name="frameShape">
+         <enum>QFrame::Box</enum>
+        </property>
         <property name="verticalScrollBarPolicy">
          <enum>Qt::ScrollBarAsNeeded</enum>
         </property>
@@ -128,7 +128,7 @@
          <number>0</number>
         </property>
         <item>
-         <widget class="QPushButton" name="pushButton_11">
+         <widget class="QPushButton" name="btn_menu">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -148,7 +148,7 @@
          </widget>
         </item>
         <item>
-         <widget class="QPushButton" name="pushButton_10">
+         <widget class="QPushButton" name="btn_lock">
           <property name="sizePolicy">
            <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
             <horstretch>0</horstretch>
@@ -196,6 +196,10 @@
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color: white;
+</string>
           </property>
           <property name="text">
            <string/>
@@ -288,6 +292,83 @@ font: 9pt &quot;Segoe UI&quot;;</string>
       </item>
      </layout>
     </widget>
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>70</x>
+       <y>40</y>
+       <width>291</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout">
+      <item>
+       <widget class="QScrollArea" name="scrollArea">
+        <property name="styleSheet">
+         <string notr="true">background-color:#3b3c42</string>
+        </property>
+        <property name="widgetResizable">
+         <bool>true</bool>
+        </property>
+        <widget class="QWidget" name="scrollAreaWidgetContents">
+         <property name="geometry">
+          <rect>
+           <x>0</x>
+           <y>0</y>
+           <width>287</width>
+           <height>387</height>
+          </rect>
+         </property>
+         <widget class="QGroupBox" name="groupBox">
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>10</y>
+            <width>271</width>
+            <height>80</height>
+           </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border: green solid 20px;
+font: 13pt &quot;Poppins&quot;;
+color: white;
+</string>
+          </property>
+          <property name="title">
+           <string>{Title}</string>
+          </property>
+          <widget class="QLabel" name="label_2">
+           <property name="geometry">
+            <rect>
+             <x>10</x>
+             <y>20</y>
+             <width>251</width>
+             <height>51</height>
+            </rect>
+           </property>
+           <property name="text">
+            <string>Lorem Ipsum</string>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </widget>
+      </item>
+     </layout>
+    </widget>
+    <widget class="QScrollBar" name="verticalScrollBar">
+     <property name="geometry">
+      <rect>
+       <x>40</x>
+       <y>39</y>
+       <width>20</width>
+       <height>391</height>
+      </rect>
+     </property>
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+    </widget>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -295,8 +376,8 @@ font: 9pt &quot;Segoe UI&quot;;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1082</width>
-     <height>22</height>
+     <width>934</width>
+     <height>30</height>
     </rect>
    </property>
   </widget>
