@@ -17,6 +17,9 @@
    <string notr="true">font: 13pt &quot;Poppins&quot;;
 background-color: #53545c</string>
   </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
   </property>
@@ -274,7 +277,7 @@ font: 9pt &quot;Segoe UI&quot;;</string>
           <property name="icon">
            <iconset>
             <normalon>:/images/Vector (6).png</normalon>
-            <activeon>../../Downloads/Vector.png</activeon>
+            <activeon>../Downloads/Vector.png</activeon>
            </iconset>
           </property>
           <property name="checkable">
@@ -365,6 +368,9 @@ color: white;
        <height>391</height>
       </rect>
      </property>
+     <property name="styleSheet">
+      <string notr="true">color: black;</string>
+     </property>
      <property name="orientation">
       <enum>Qt::Vertical</enum>
      </property>
@@ -377,7 +383,7 @@ color: white;
      <x>0</x>
      <y>0</y>
      <width>934</width>
-     <height>30</height>
+     <height>24</height>
     </rect>
    </property>
   </widget>

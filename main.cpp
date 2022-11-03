@@ -4,6 +4,8 @@
 #include <QApplication>
 #include <QFrame>
 #include <QPlainTextEdit>
+#include <QtSvg>
+
 
 int main(int argc, char *argv[])
 {

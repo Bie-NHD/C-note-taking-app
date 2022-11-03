@@ -7,6 +7,7 @@
         <file>Vector (4).png</file>
         <file>Vector (5).png</file>
         <file>Vector (6).png</file>
+        <file>materials/SVG/image.svg</file>
     </qresource>
     <qresource prefix="/Fonts">
         <file>materials/Fonts/Poppins-Light.ttf</file>
@@ -34,5 +35,8 @@
         <file>materials/SVG/check_box.svg</file>
         <file>materials/SVG/alarm_add.svg</file>
         <file>materials/SVG/alarm.svg</file>
+        <file>materials/SVG/calendar.svg</file>
+        <file>materials/SVG/timer.svg</file>
+        <file>materials/SVG/format_align_justify.svg</file>
     </qresource>
 </RCC>
