@@ -8,6 +8,7 @@
         <file>Vector (5).png</file>
         <file>Vector (6).png</file>
         <file>materials/SVG/image.svg</file>
+        <file>materials/calendar.png</file>
     </qresource>
     <qresource prefix="/Fonts">
         <file>materials/Fonts/Poppins-Light.ttf</file>

@@ -204,6 +204,23 @@ font-family: url(:/Fonts/materials/Fonts/Poppins-Light.ttf);</string>
        </widget>
       </item>
       <item>
+       <widget class="QPushButton" name="btnCalendar">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/calendar.svg</normaloff>:/SVG/materials/SVG/calendar.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
        <widget class="QPushButton" name="btnTimer">
         <property name="text">
          <string/>
@@ -224,6 +241,237 @@ font-family: url(:/Fonts/materials/Fonts/Poppins-Light.ttf);</string>
     </item>
     <item>
      <widget class="QPlainTextEdit" name="plainTextEdit">
+      <property name="styleSheet">
+       <string notr="true">background-color:white;
+border-top: 20px solid green;</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QWidget" name="layoutWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>260</y>
+     <width>711</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QPushButton" name="btnBold_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_bold.svg</normaloff>:/SVG/materials/SVG/format_bold.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnItalic_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_italic.svg</normaloff>:/SVG/materials/SVG/format_italic.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+        <property name="autoDefault">
+         <bool>false</bool>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnUnderline_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_underlined.svg</normaloff>:/SVG/materials/SVG/format_underlined.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAlignLeft_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_align_left.svg</normaloff>:/SVG/materials/SVG/format_align_left.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAlignCenter_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_align_center.svg</normaloff>:/SVG/materials/SVG/format_align_center.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAlignRight_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_align_right.svg</normaloff>:/SVG/materials/SVG/format_align_right.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAlignJustify_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_align_justify.svg</normaloff>:/SVG/materials/SVG/format_align_justify.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnListBullet_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_list_bulleted.svg</normaloff>:/SVG/materials/SVG/format_list_bulleted.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnListNumber_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/format_list_numbered.svg</normaloff>:/SVG/materials/SVG/format_list_numbered.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnAddImg_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/images/materials/SVG/image.svg</normaloff>:/images/materials/SVG/image.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnCalendar_2">
+        <property name="cursor">
+         <cursorShape>PointingHandCursor</cursorShape>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/calendar.svg</normaloff>:/SVG/materials/SVG/calendar.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QPushButton" name="btnTimer_2">
+        <property name="text">
+         <string/>
+        </property>
+        <property name="icon">
+         <iconset resource="Resource.qrc">
+          <normaloff>:/SVG/materials/SVG/timer.svg</normaloff>:/SVG/materials/SVG/timer.svg</iconset>
+        </property>
+        <property name="iconSize">
+         <size>
+          <width>30</width>
+          <height>30</height>
+         </size>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QPlainTextEdit" name="plainTextEdit_2">
       <property name="styleSheet">
        <string notr="true">background-color:white;
 border-top: 20px solid green;</string>
