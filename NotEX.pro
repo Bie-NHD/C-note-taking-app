@@ -1,7 +1,7 @@
-QT       += core gui
-# Using CORE & GUI Libraries
+QT       += core gui sql
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
-# Using wigets as an extension
+
 CONFIG += c++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
@@ -9,16 +9,36 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    btntextcolor.cpp \
+    colorpalette.cpp \
+    getpassword.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    paintwindow.cpp \
+    scribblearea.cpp \
+    setpassword.cpp
 
 HEADERS += \
-    mainwindow.h
+    btntextcolor.h \
+    colorpalette.h \
+    getpassword.h \
+    mainwindow.h \
+    paintwindow.h \
+    scribblearea.h \
+    setpassword.h
 
 FORMS += \
-    mainwindow.ui
+    getpassword.ui \
+    mainwindow.ui \
+    paintwindow.ui \
+    scribblearea.ui \
+    setpassword.ui
+
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+RESOURCES += \
+    resource.qrc
