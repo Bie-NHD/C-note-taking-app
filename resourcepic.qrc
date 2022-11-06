@@ -1,0 +1,11 @@
+<RCC>
+    <qresource prefix="/picture">
+        <file>fileimg/damdai.jpg</file>
+        <file>fileimg/hua1.jpg</file>
+        <file>fileimg/hua2.jpg</file>
+        <file>fileimg/lanhmachan.jpg</file>
+        <file>fileimg/lydiem.jpg</file>
+        <file>fileimg/lyly.jpg</file>
+        <file>fileimg/motudong.jpg</file>
+    </qresource>
+</RCC>

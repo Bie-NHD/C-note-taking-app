@@ -1,16 +1,15 @@
 #include "mainwindow.h"
-
-#include <QLabel>
+#include <btntextcolor.h>
+//Đây là file thực thi cửa sổ chính
 #include <QApplication>
-
 
 int main(int argc, char *argv[])
 {
-    QApplication app(argc, argv);
+    QApplication a(argc, argv);
     MainWindow w;
 
-
+    QFont font( ":/Font/Poppins-Regular.ttf", 20 );
 
     w.show();
-    return app.exec();
+    return a.exec();
 }

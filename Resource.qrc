@@ -1,11 +1,17 @@
 <RCC>
-    <qresource prefix="/images">
-        <file>Vector.png</file>
-        <file>Vector (1).png</file>
-        <file>Vector (2).png</file>
-        <file>Vector (3).png</file>
-        <file>Vector (4).png</file>
-        <file>Vector (5).png</file>
-        <file>Vector (6).png</file>
+    <qresource prefix="/hinhanh">
+        <file>img/3gach.png</file>
+        <file>img/check.jpg</file>
+        <file>img/file.jpg</file>
+        <file>img/lock.jpg</file>
+        <file>img/pencil.jpg</file>
+        <file>img/plus.jpg</file>
+        <file>img/return.png</file>
+        <file>img/clock2.png</file>
+        <file>img/b.png</file>
+        <file>img/i.jpg</file>
+        <file>img/u.jpg</file>
+        <file>img/pic.png</file>
+        <file>img/rac.jpg</file>
     </qresource>
 </RCC>
