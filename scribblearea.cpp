@@ -1,6 +1,6 @@
 #include <QtWidgets>
-
 #include "scribblearea.h"
+
 //Đây là source file gồm các tính năng của khung vẽ bao gồm ( mở ảnh, lưu ảnh, chỉnh màu bút, độ rộng và 1 số event xoay quanh những hành động này )
 
 ScribbleArea::ScribbleArea(QWidget *parent) : QWidget(parent)

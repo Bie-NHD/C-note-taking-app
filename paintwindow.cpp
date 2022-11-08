@@ -2,7 +2,9 @@
 #include "mainwindow.h"
 #include "scribblearea.h"
 #include <paintwindow.h>
+
 //Đây là file chính gồm các tính năng của khung vẽ được sử dụng thêm bên scribblearea
+
 PaintWindow::PaintWindow(QWidget *parent) : QMainWindow(parent)
 
 {

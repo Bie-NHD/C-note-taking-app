@@ -25,7 +25,6 @@ public:
 
 public slots:
     void clearImage();
-    void print();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;

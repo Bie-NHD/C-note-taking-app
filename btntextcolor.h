@@ -5,7 +5,6 @@
 #include <QLabel>
 #include <QBitmap>
 #include <QMouseEvent>
-
 #include "colorpalette.h"
 
 class d_ColorButton;
@@ -47,9 +46,9 @@ signals:
 class d_ColorButton
 {
 public:
-    QToolButton * tButtonDefaultColor;
-    QToolButton * tButtonSelectColor;
-    ColorPalette * colorPalette;
+    QToolButton *tButtonDefaultColor;
+    QToolButton *tButtonSelectColor;
+    ColorPalette *colorPalette;
     QColor color;
 };
 

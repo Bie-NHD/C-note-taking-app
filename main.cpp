@@ -1,7 +1,8 @@
 #include "mainwindow.h"
 #include <btntextcolor.h>
-//Đây là file thực thi cửa sổ chính
 #include <QApplication>
+
+//Đây là file thực thi cửa sổ chính
 
 int main(int argc, char *argv[])
 {

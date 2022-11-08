@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <setpassword.h>
+#include "setpassword.h"
 #include "btntextcolor.h"
 #include "scribblearea.h"
 
@@ -42,14 +42,14 @@ MainWindow::MainWindow(QWidget *parent)
     connOpen();
 
     //Tạo modal...
-    QSqlQueryModel *modal= new QSqlQueryModel();
-    QSqlQueryModel *modal1= new QSqlQueryModel();
-    QSqlQueryModel *modal2= new QSqlQueryModel();
+    QSqlQueryModel *modal = new QSqlQueryModel();
+    QSqlQueryModel *modal1 = new QSqlQueryModel();
+    QSqlQueryModel *modal2 = new QSqlQueryModel();
 
     //Tạo query...
-    QSqlQuery *qry= new QSqlQuery(mydb);
-    QSqlQuery *qry1= new QSqlQuery(mydb);
-    QSqlQuery *qry2= new QSqlQuery(mydb);
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QSqlQuery *qry1 = new QSqlQuery(mydb);
+    QSqlQuery *qry2 = new QSqlQuery(mydb);
 
     //Chọn data gắn vào...
     qry->prepare("select id from note1");
@@ -67,19 +67,19 @@ MainWindow::MainWindow(QWidget *parent)
     modal2->setQuery(*qry2);
 
     //Tạo khung danh sách note...
-    QGridLayout *lay=new QGridLayout(this);
+    QGridLayout *lay = new QGridLayout(this);
     QPushButton *content[2000];
     //Thêm các thành phần vào khu vực kéo chuột (scrollArea)
-    for(int j=0;j<=modal1->rowCount()-1;j++)
+    for(int j=0; j<=modal1->rowCount()-1; j++)
     {
     QString id=modal->record(j).value(0).toString();//(id)
     QString title=modal1->record(j).value(0).toString();//(title)
     QString contentString=modal2->record(j).value(0).toString();//(content)
 
     //Biến string thành giao diện
-    content[j]=new QPushButton(contentString);
+    content[j] = new QPushButton(contentString);
     content[j]->setProperty("id",id);
-    QLabel *lab=new QLabel("Content: "+contentString+".");
+    QLabel *lab = new QLabel("Content: "+contentString+".");
     lab->setStyleSheet("color:white");
 
     //Chia từng note trong danh sách ra bằng đường kẻ trắng
@@ -134,7 +134,7 @@ void MainWindow::onnameclicked()
     ui->frame_2->show();
 
     //Khởi tạo nút đã tạo
-    pButton[x]=new QPushButton;
+    pButton[x] = new QPushButton;
 
     //Nhận tên của nút và gán nó vào pButton[x]
     pButton[x] = qobject_cast<QPushButton*>(sender());
@@ -156,8 +156,8 @@ void MainWindow::onnameclicked()
     //stylesheet cho nút để nhấn
     pButton[x]->setStyleSheet("color: yellow;font-size:25px;Text-align:left;font-family:century gothic");
     //Nhận giá trị id đồng thời
-    QString idText= pButton[x]->property("id").value<QString>();
-    currentID= idText;
+    QString idText = pButton[x]->property("id").value<QString>();
+    currentID = idText;
     connOpen();
     QSqlQuery qry;
     //Gọi dữ liệu nội dung note
@@ -185,13 +185,13 @@ void MainWindow::onnameclicked()
 void MainWindow::on_pushButton_clicked()
 {
     connOpen();
-    QSqlQueryModel *modal= new QSqlQueryModel();
-    QSqlQueryModel *modal1= new QSqlQueryModel();
-    QSqlQueryModel *modal2= new QSqlQueryModel();
+    QSqlQueryModel *modal = new QSqlQueryModel();
+    QSqlQueryModel *modal1 = new QSqlQueryModel();
+    QSqlQueryModel *modal2 = new QSqlQueryModel();
 
-    QSqlQuery *qry= new QSqlQuery(mydb);
-    QSqlQuery *qry1= new QSqlQuery(mydb);
-    QSqlQuery *qry2= new QSqlQuery(mydb);
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QSqlQuery *qry1 = new QSqlQuery(mydb);
+    QSqlQuery *qry2 = new QSqlQuery(mydb);
 
     qry->prepare("select id from note1");
     qry1->prepare("select title from note1");
@@ -205,23 +205,23 @@ void MainWindow::on_pushButton_clicked()
     modal1->setQuery(*qry1);
     modal2->setQuery(*qry2);
 
-    QVBoxLayout *lay=new QVBoxLayout(this);
-    QString s=ui->lineEdit->text();
+    QVBoxLayout *lay  = new QVBoxLayout(this);
+    QString s = ui->lineEdit->text();
     QPushButton *label;
-    QGridLayout *lay1=new QGridLayout(this);
+    QGridLayout *lay1 = new QGridLayout(this);
     QPushButton *content[2000];
-    for(int j=0;j<=modal1->rowCount();j++)
+    for(int j=0; j<=modal1->rowCount(); j++)
     {
-        QString id=modal->record(j).value(0).toString();
-        QString title=modal1->record(j).value(0).toString();
-        QString contentText=modal2->record(j).value(0).toString();
+        QString id = modal->record(j).value(0).toString();
+        QString title = modal1->record(j).value(0).toString();
+        QString contentText = modal2->record(j).value(0).toString();
 
 
             //Kiểm tra xem note có đang trống hay ko
             if(QString(s).isEmpty() ){
-            content[j]=new QPushButton(contentText);
+            content[j] = new QPushButton(contentText);
             content[j]->setProperty("id",id);
-            QLabel *lab=new QLabel("Content: "+contentText+".");
+            QLabel *lab = new QLabel("Content: "+contentText+".");
             lab->setStyleSheet("color:white");
 
             //Chia từng note trong danh sách bằng đường kẻ trắng
@@ -254,12 +254,12 @@ void MainWindow::on_pushButton_clicked()
 
         int x = QString::compare(s, title, Qt::CaseInsensitive);
         //Khớp kết quả
-        if(x==0)
+        if(x == 0)
         {
             //clearing previous layout
             if ( ui->scrollContents->layout() != NULL )
             {
-                QLayoutItem* item;
+                QLayoutItem *item;
                 while ( ( item = ui->scrollContents->layout()->takeAt( 0 ) ) != NULL )
                 {
                     delete item->widget();
@@ -271,12 +271,12 @@ void MainWindow::on_pushButton_clicked()
             //Tạo layout mới cho danh sách note
             ui->frame_2->hide();
 
-            label=new QPushButton(title);
+            label = new QPushButton(title);
             label->setObjectName(title);
 
-            QLabel *lab=new QLabel("Content: "+contentText+".");
+            QLabel *lab = new QLabel("Content: "+contentText+".");
             lab->setStyleSheet("color:white");
-            QFrame *line=new QFrame;
+            QFrame *line = new QFrame;
             line->setFrameShape(QFrame::HLine);
             line->setFrameShadow(QFrame::Sunken);
             line->setStyleSheet("background:white");
@@ -303,11 +303,11 @@ void MainWindow::on_pushButton_clicked()
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-//Hiển thị khung đặt khẩu để khóa note mình muốn
+//Hiển thị khung đặt mật khẩu để khóa note mình muốn
 void MainWindow::on_pushButton_2_clicked()
 {
     Setpassword = new setpassword(this);
-    Setpassword->setGeometry(450,250,300,300);
+    Setpassword->setGeometry(500,250,341,191);
     Setpassword->show();
 }
 
@@ -315,7 +315,7 @@ void MainWindow::on_pushButton_2_clicked()
 void MainWindow::on_pushButton_5_clicked()
 {
     Getpassword = new getpassword(this);
-    Getpassword->setGeometry(450,250,300,300);
+    Getpassword->setGeometry(500,250,341,191);
     Getpassword->show();
 }
 
@@ -334,6 +334,7 @@ void MainWindow::on_pushButton_3_clicked()
 
    } else ui->frame_2->show();
 }
+
 //Lưu note vào database
 void MainWindow::on_pushButton_4_clicked()
 {
@@ -368,12 +369,12 @@ void MainWindow::on_pushButton_4_clicked()
              {       while(qry.next())
                     {
                         QSqlQueryModel *modal = new QSqlQueryModel();
-                        QSqlQueryModel *modal1= new QSqlQueryModel();
-                        QSqlQueryModel *modal2= new QSqlQueryModel();
+                        QSqlQueryModel *modal1 = new QSqlQueryModel();
+                        QSqlQueryModel *modal2 = new QSqlQueryModel();
                         //Tạo query...
                         QSqlQuery *qry = new QSqlQuery(mydb);
-                        QSqlQuery *qry1= new QSqlQuery(mydb);
-                        QSqlQuery *qry2= new QSqlQuery(mydb);       
+                        QSqlQuery *qry1 = new QSqlQuery(mydb);
+                        QSqlQuery *qry2 = new QSqlQuery(mydb);
                         //Chọn data gắn vào...
                         qry->prepare("select id from note1");
                         qry1->prepare("select title from note1");
@@ -399,22 +400,22 @@ void MainWindow::on_pushButton_4_clicked()
                             delete ui->scrollContents->layout();
                         }
                         //Tạo khung mới
-                        QGridLayout *lay=new QGridLayout(this);
+                        QGridLayout *lay = new QGridLayout(this);
                         QPushButton *content[2000];
 
-                        for(int j=0;j<=modal->rowCount()-1;j++)
+                        for(int j=0; j<=modal->rowCount()-1; j++)
                         {
-                        QString id=modal->record(j).value(0).toString();//id
-                        QString title=modal1->record(j).value(0).toString();//(title)
-                        QString contentText=modal2->record(j).value(0).toString();//(content)
+                        QString id = modal->record(j).value(0).toString();//id
+                        QString title = modal1->record(j).value(0).toString();//(title)
+                        QString contentText = modal2->record(j).value(0).toString();//(content)
 
 
 
                         //Biến string thành giao diện
 
-                        content[j]=new QPushButton(contentText);
+                        content[j] = new QPushButton(contentText);
                         content[j]->setProperty("id",id);
-                        QLabel *lab=new QLabel("Content: "+contentText+".");
+                        QLabel *lab = new QLabel("Content: "+contentText+".");
                         lab->setStyleSheet("color:white");
 
                         //Chia từng mini note ra bằng đường kẻ trắng
@@ -536,4 +537,5 @@ void MainWindow::on_pushButton_6_clicked()
     paintwindow = new PaintWindow(this);
     paintwindow->show();
 }
+
 

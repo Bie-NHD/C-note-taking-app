@@ -1,5 +1,4 @@
 #include "btntextcolor.h"
-
 #include <QMenu>
 #include <QColorDialog>
 #include <QPainter>
@@ -47,7 +46,7 @@ void ColorButton::createGUI()
 
     QObject::connect( this, SIGNAL(selectedColor(QColor)), menu, SLOT(hide()) );
 
-    QVBoxLayout * layout = new QVBoxLayout();
+    QVBoxLayout *layout = new QVBoxLayout();
     layout->addWidget( d->tButtonDefaultColor );
     layout->addWidget( d->colorPalette );
     layout->addWidget( d->tButtonSelectColor );

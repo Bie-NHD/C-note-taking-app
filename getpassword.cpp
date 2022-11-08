@@ -1,7 +1,9 @@
 #include "getpassword.h"
 #include "ui_getpassword.h"
 #include <mainwindow.h>
+
 //Đây là file mở khóa note
+
 getpassword::getpassword(QWidget *parent) :
     QGroupBox(parent),
     ui(new Ui::getpassword)
@@ -16,33 +18,25 @@ getpassword::~getpassword()
 }
 
 void getpassword::on_submitButton_2_clicked()
-{
-    connOpen();
+{   
+        connOpen();
         QString password = ui->password_2->text();
 
+        // Tạo truy vấn
+        QSqlQuery query(QSqlDatabase::database("My Connect"));
+        query.prepare(QString("SELECT * FROM password WHERE password = :password"));
 
-            // Tạo truy vấn
-            QSqlQuery query(QSqlDatabase::database("My Connect"));
-            query.prepare(QString("SELECT * FROM pass WHERE password = :password"));
+        // Gắn dữ liệu vào cột bên database
+        query.bindValue(":password", password);
+        query.exec();
 
-            // Gắn dữ liệu vào cột bên database
-            query.bindValue(":password", password);
-
-            //Truy vấn
-            if(!query.exec()){
-                QMessageBox::information(this, "Thất bại", "Truy vấn Thực Thi Thất Bại");
-            }else{
-                while(query.next()){
-                    QString passwordFromDB = query.value(1).toString();
-
-                    // Kiểm tra dữ liệu
-                    if(passwordFromDB == password){
-                        QMessageBox::information(this, "Thành công", "Đăng nhập thành công");  
-                    }else{
-                        QMessageBox::information(this, "Thất bại", "Đăng nhập thất bại");
-                    }
-                }
-            }
-            hide();
+        //Truy vấn
+        if(query.next()){
+        // Kiểm tra dữ liệu
+            QMessageBox::information(this, "Thành công", "Đăng nhập thành công");
+        }else{
+            QMessageBox::information(this, "Thất bại", "Đăng nhập thất bại");
+        }
+        hide();
 }
 

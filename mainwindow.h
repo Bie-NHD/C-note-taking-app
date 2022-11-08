@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow
 
 public slots:
     void onnameclicked();
+
 public:
     static int x;
     static QString pro_user;
@@ -41,8 +42,9 @@ public:
         mydb.close();
         mydb.removeDatabase(QSqlDatabase::defaultConnection);
     }
+
     bool connOpen(){
-        mydb=QSqlDatabase::addDatabase("QSQLITE");
+       mydb=QSqlDatabase::addDatabase("QSQLITE");
        mydb.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
 
        if(!mydb.open()){
@@ -54,9 +56,7 @@ public:
        }
     }
 
-
 public:
-
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -91,6 +91,10 @@ private slots:
 
 //    void on_dateTimeEdit_dateTimeChanged(const QDateTime &dateTime);
     void on_pushButton_6_clicked();
+
+    void on_pushButton_3_toggled(bool checked);
+
+    void on_pushButton_2_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;

@@ -1,9 +1,10 @@
 #include "colorpalette.h"
-
 #include <QPixmap>
 #include <QBitmap>
 #include <QWidget>
+
 //Đây là file dãy màu được sử dụng trong nút tạo text color và khung vẽ
+
 ColorPalette::ColorPalette( const QString & path, QWidget * parent )
     : QLabel( parent )
 {

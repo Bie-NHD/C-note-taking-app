@@ -1,6 +1,8 @@
 #include "setpassword.h"
 #include "ui_setpassword.h"
+
 //Đây là file tạo khóa note
+
 setpassword::setpassword(QWidget *parent) :
     QGroupBox(parent),
     ui(new Ui::setpassword)
@@ -27,7 +29,7 @@ void setpassword::on_submitButton_clicked()
             } else {
             // Tạo truy vấn
             QSqlQuery qry;
-            qry.prepare("INSERT INTO pass (password)" "VALUES (:password)");
+            qry.prepare("INSERT INTO password (password)" "VALUES (:password)");
             qry.bindValue(":password", password);
 
             if(qry.exec()){
