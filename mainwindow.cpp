@@ -19,13 +19,13 @@
 #include <QSqlError>
 #include <QColor>
 #include <QColorDialog>
-#include<QFontDialog>
-#include<QFont>
-#include<QToolButton>
-#include<QDateTime>
-#include<QDateTimeEdit>
-#include<QPushButton>
-#include<QToolButton>
+#include <QFontDialog>
+#include <QFont>
+#include <QToolButton>
+#include <QDateTime>
+#include <QDateTimeEdit>
+#include <QPushButton>
+#include <QToolButton>
 
 //Ứng dụng ghi chú được hỗ trợ bởi trình tạo giao diện Qt xài ngôn ngữ Qmake với thiên hướng giống ngôn ngữ C++ và sự hỗ trợ của database Sqlite3 ( và 1 số hình ảnh, fonts khác )
 //Mỗi một form thiết kế của Qt sẽ cung cấp 3 loại file ( .h, .cpp, .ui ) được liên kết. Trong đó file .ui có format theo XML có thiên hướng giống html, css.. sẽ bao gồm những thành
@@ -304,35 +304,55 @@ void MainWindow::on_pushButton_clicked()
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Hiển thị khung đặt mật khẩu để khóa note mình muốn
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_pushButton_2_clicked(bool checked = false)
 {
-    Setpassword = new setpassword(this);
-    Setpassword->setGeometry(500,250,341,191);
-    Setpassword->show();
+    if(checked){
+        Setpassword->hide();
+        ui->pushButton_2->setCheckable(false);
+    }
+    if(!checked){
+        Setpassword = new setpassword(this);
+        Setpassword->setGeometry(500,250,341,191);
+        Setpassword->show();
+        ui->pushButton_2->setCheckable(true);
+    }
 }
 
 //Hiển thị khung mở khóa note
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_pushButton_5_clicked(bool checked = false)
 {
-    Getpassword = new getpassword(this);
-    Getpassword->setGeometry(500,250,341,191);
-    Getpassword->show();
+    if(checked){
+        Getpassword->hide();
+        ui->pushButton_5->setCheckable(false);
+    }
+    if(!checked){
+        Getpassword = new getpassword(this);
+        Getpassword->setGeometry(500,250,341,191);
+        Getpassword->show();
+        ui->pushButton_5->setCheckable(true);
+    }
 }
 
 //Thêm note trống mới
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_pushButton_3_clicked(bool checked = false)
 {
+    if(checked){
+        ui->frame_2->hide();
+        ui->pushButton_3->setCheckable(false);
+    }
+    if(!checked){
+        QString title = ui->title->toPlainText();
+        QString content = ui->content->toPlainText();
+        if(!QString(title).isEmpty() || !QString(content).isEmpty())
+        {
+            ui->frame_2->hide();
+            ui->title->clear();
+            ui->content->clear();
+            ui->frame_2->show();
 
-   QString title = ui->title->toPlainText();
-   QString content = ui->content->toPlainText();
-   if(!QString(title).isEmpty() || !QString(content).isEmpty())
-   {
-       ui->frame_2->hide();
-       ui->title->clear();
-       ui->content->clear();
-       ui->frame_2->show();
-
-   } else ui->frame_2->show();
+        }else ui->frame_2->show();
+        ui->pushButton_3->setCheckable(true);
+    }
 }
 
 //Lưu note vào database
@@ -537,5 +557,4 @@ void MainWindow::on_pushButton_6_clicked()
     paintwindow = new PaintWindow(this);
     paintwindow->show();
 }
-
 

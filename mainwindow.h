@@ -7,15 +7,15 @@
 #include <QFileInfo>
 #include <QMessageBox>
 #include <QPushButton>
-#include<QLineEdit>
-#include<QPlainTextEdit>
-#include<QTimer>
-#include<QComboBox>
-#include<QGroupBox>
-#include<QGridLayout>
-#include<QCalendarWidget>
-#include<QLabel>
-#include<QCheckBox>
+#include <QLineEdit>
+#include <QPlainTextEdit>
+#include <QTimer>
+#include <QComboBox>
+#include <QGroupBox>
+#include <QGridLayout>
+#include <QCalendarWidget>
+#include <QLabel>
+#include <QCheckBox>
 
 #include <setpassword.h>
 #include <getpassword.h>
@@ -44,33 +44,32 @@ public:
     }
 
     bool connOpen(){
-       mydb=QSqlDatabase::addDatabase("QSQLITE");
-       mydb.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
+        mydb=QSqlDatabase::addDatabase("QSQLITE");
+        mydb.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
 
-       if(!mydb.open()){
-           qDebug()<<("File not opened");
+        if(!mydb.open()){
+            qDebug()<<("File not opened");
                       return false;
-       }else {
-           qDebug()<<("File opened");
+        }else {
+            qDebug()<<("File opened");
                      return true;
-       }
-    }
+        }
+     }
 
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
-
     void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_pushButton_2_clicked(bool checked);
 
-    void on_pushButton_3_clicked();
+    void on_pushButton_3_clicked(bool checked);
 
     void on_pushButton_4_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_pushButton_5_clicked(bool checked);
 
     void on_btnTextColor_clicked();
 
@@ -91,10 +90,6 @@ private slots:
 
 //    void on_dateTimeEdit_dateTimeChanged(const QDateTime &dateTime);
     void on_pushButton_6_clicked();
-
-    void on_pushButton_3_toggled(bool checked);
-
-    void on_pushButton_2_toggled(bool checked);
 
 private:
     Ui::MainWindow *ui;

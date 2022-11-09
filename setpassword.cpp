@@ -1,5 +1,6 @@
 #include "setpassword.h"
 #include "ui_setpassword.h"
+#include <mainwindow.h>
 
 //Đây là file tạo khóa note
 
