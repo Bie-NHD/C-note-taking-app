@@ -26,7 +26,7 @@
 #include<QDateTimeEdit>
 #include<QPushButton>
 #include<QToolButton>
-
+#include<QSqlError>
 //Ứng dụng ghi chú được hỗ trợ bởi trình tạo giao diện Qt xài ngôn ngữ Qmake với thiên hướng giống ngôn ngữ C++ và sự hỗ trợ của database Sqlite3 ( và 1 số hình ảnh, fonts khác )
 //Mỗi một form thiết kế của Qt sẽ cung cấp 3 loại file ( .h, .cpp, .ui ) được liên kết. Trong đó file .ui có format theo XML có thiên hướng giống html, css.. sẽ bao gồm những thành
 // phần được đặt tên theo từng nút, khung đặc biệt ( 1 số chưa được đổi tên còn để ở dạng mặc định như "pushbutton", nhưng có chú thích ở phía trên )
@@ -68,7 +68,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Tạo khung danh sách note...
     QGridLayout *lay=new QGridLayout(this);
-    QPushButton *content[2000];
+    QPushButton *titleText[2000];
     //Thêm các thành phần vào khu vực kéo chuột (scrollArea)
     for(int j=0;j<=modal1->rowCount()-1;j++)
     {
@@ -77,9 +77,9 @@ MainWindow::MainWindow(QWidget *parent)
     QString contentString=modal2->record(j).value(0).toString();//(content)
 
     //Biến string thành giao diện
-    content[j]=new QPushButton(contentString);
-    content[j]->setProperty("id",id);
-    QLabel *lab=new QLabel("Content: "+contentString+".");
+    titleText[j]=new QPushButton(title);
+    titleText[j]->setProperty("id",id);
+    QLabel *lab=new QLabel(""+contentString+"...");
     lab->setStyleSheet("color:white");
 
     //Chia từng note trong danh sách ra bằng đường kẻ trắng
@@ -90,8 +90,8 @@ MainWindow::MainWindow(QWidget *parent)
     line->setStyleSheet("background:white");
 
     //Nổi hiệu ứng khi rê chuột tới cho nút title
-    content[j]->setObjectName("btnName_1");
-    content[j]->setStyleSheet(
+    titleText[j]->setObjectName("btnName_1");
+    titleText[j]->setStyleSheet(
     "   QPushButton#btnName_1 {"
     "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
     " }"
@@ -101,12 +101,12 @@ MainWindow::MainWindow(QWidget *parent)
 
     //Gắn giao diện với từng layout đã tạo
     lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
-    lay->addWidget(content[j]);
+    lay->addWidget(titleText[j]);
     lay->addWidget(lab);
     lay->addWidget(line);
 
      //Nhấn title sẽ thực hiện hàm onnameclicked
-     connect(content[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
+     connect(titleText[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
      //Bỏ layout vào khu vực kéo (scrollArea)
      ui->scrollContents->setLayout(lay);
     }
@@ -138,8 +138,8 @@ void MainWindow::onnameclicked()
 
     //Nhận tên của nút và gán nó vào pButton[x]
     pButton[x] = qobject_cast<QPushButton*>(sender());
-
     //Mỗi lần nhấn nút khác thì nút vừa nhấn trước đó sẽ quay về stylesheet mặc định như bên dưới
+    try{
     if(x>0)
     {
 
@@ -151,8 +151,8 @@ void MainWindow::onnameclicked()
                                     "     color: yellow;font-size:25px;"
                                     " }");
     }
-
-
+}
+    catch(...){qDebug()<<"đeuwè";}
     //stylesheet cho nút để nhấn
     pButton[x]->setStyleSheet("color: yellow;font-size:25px;Text-align:left;font-family:century gothic");
     //Nhận giá trị id đồng thời
@@ -209,7 +209,7 @@ void MainWindow::on_pushButton_clicked()
     QString s=ui->lineEdit->text();
     QPushButton *label;
     QGridLayout *lay1=new QGridLayout(this);
-    QPushButton *content[2000];
+    QPushButton *titleText[2000];
     for(int j=0;j<=modal1->rowCount();j++)
     {
         QString id=modal->record(j).value(0).toString();
@@ -217,11 +217,12 @@ void MainWindow::on_pushButton_clicked()
         QString contentText=modal2->record(j).value(0).toString();
 
 
-            //Kiểm tra xem note có đang trống hay ko
+            //Kiểm tra xem tìm kiếm có đang trống hay ko
             if(QString(s).isEmpty() ){
-            content[j]=new QPushButton(contentText);
-            content[j]->setProperty("id",id);
-            QLabel *lab=new QLabel("Content: "+contentText+".");
+                 QMessageBox::information(this, "", "Hãy nhập vào tìm kiếm");
+            titleText[j]=new QPushButton(title);
+            titleText[j]->setProperty("id",id);
+            QLabel *lab=new QLabel(""+contentText+"...");
             lab->setStyleSheet("color:white");
 
             //Chia từng note trong danh sách bằng đường kẻ trắng
@@ -232,8 +233,9 @@ void MainWindow::on_pushButton_clicked()
             line->setStyleSheet("background:white");
 
             //Nổi hiệu ứng khi rê chuột tới cho nút title
-            content[j]->setObjectName("btnName_1");
-            content[j]->setStyleSheet(
+
+            titleText[j]->setObjectName("btnName_1");
+            titleText[j]->setStyleSheet(
             "   QPushButton#btnName_1 {"
             "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
             " }"
@@ -243,11 +245,11 @@ void MainWindow::on_pushButton_clicked()
 
             //Gắn giao diện với từng layout đã tạo
             lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
-            lay1->addWidget(content[j]);
+            lay1->addWidget(titleText[j]);
             lay1->addWidget(lab);
             lay1->addWidget(line);
              //Nhấn title sẽ thực hiện hàm onnameclicked ( tạo kết nối signals & slots trong Qt )
-             connect(content[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
+             connect(titleText[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
              //Bỏ layout vào khu vực kéo (scrollArea)
              ui->scrollContents->setLayout(lay1);
             }
@@ -341,7 +343,7 @@ void MainWindow::on_pushButton_4_clicked()
     QString content = ui->content->toPlainText();
 
 
-     if(!QString(title).isEmpty())
+     if(!QString(title).isEmpty() )
      {
         connOpen();
         QSqlQuery qry;
@@ -350,7 +352,22 @@ void MainWindow::on_pushButton_4_clicked()
         {
             connClose();
 
-         }
+         } else {
+
+            connOpen();
+            QSqlQuery qry;
+            qry.prepare("INSERT INTO note1 (title, content)" "VALUES (:title, :content)");
+            qry.bindValue(":title", title);
+            qry.bindValue(":content", content);
+
+            if(qry.exec()){
+                // Xet dieu kien cho du lieu duoc nhap vao
+                    QMessageBox::information(this, "Đã được thêm vào", "Dữ liệu được thêm vào thành công");
+                } else {
+                    QMessageBox::information(this, "Không được thêm vào", "Dữ liệu không được thêm vào");
+                }
+            }
+}
 
             if(!QString(content).isEmpty())
             {
@@ -464,8 +481,8 @@ void MainWindow::on_pushButton_4_clicked()
                 }
             }
 
-     }
 }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //Tạo màu cho chữ

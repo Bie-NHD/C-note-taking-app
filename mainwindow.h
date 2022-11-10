@@ -97,5 +97,6 @@ private:
     setpassword *Setpassword;
     getpassword *Getpassword;
     PaintWindow *paintwindow;
+
 };
 #endif // MAINWINDOW_H

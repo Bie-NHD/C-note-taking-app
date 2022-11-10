@@ -12,6 +12,7 @@ SOURCES += \
     btntextcolor.cpp \
     colorpalette.cpp \
     getpassword.cpp \
+    home.cpp \
     main.cpp \
     mainwindow.cpp \
     paintwindow.cpp \
@@ -22,6 +23,7 @@ HEADERS += \
     btntextcolor.h \
     colorpalette.h \
     getpassword.h \
+    home.h \
     mainwindow.h \
     paintwindow.h \
     scribblearea.h \
@@ -29,6 +31,7 @@ HEADERS += \
 
 FORMS += \
     getpassword.ui \
+    home.ui \
     mainwindow.ui \
     paintwindow.ui \
     scribblearea.ui \
