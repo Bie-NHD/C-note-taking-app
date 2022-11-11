@@ -31,16 +31,11 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public slots:
-    void onnameclicked();
+    void onNameClicked();
 public:
     static int x;
     static QString pro_user;
     QSqlDatabase mydb;
-    void connClose(){
-
-        mydb.close();
-        mydb.removeDatabase(QSqlDatabase::defaultConnection);
-    }
     bool connOpen(){
         mydb=QSqlDatabase::addDatabase("QSQLITE");
        mydb.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
@@ -54,6 +49,13 @@ public:
        }
     }
 
+    void connClose(){
+
+        mydb.close();
+        mydb.removeDatabase(QSqlDatabase::defaultConnection);
+    }
+
+    void refreshNoteList();
 
 public:
 
@@ -62,15 +64,15 @@ public:
 
 private slots:
 
-    void on_pushButton_clicked();
+    void on_search_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_setPassword_clicked();
 
-    void on_pushButton_3_clicked();
+    void on_add_clicked();
 
-    void on_pushButton_4_clicked();
+    void on_save_clicked();
 
-    void on_pushButton_5_clicked();
+    void on_getPassword_clicked();
 
     void on_btnTextColor_clicked();
 
@@ -86,17 +88,16 @@ private slots:
 
     void on_toolButton_plus_clicked();
 
-
 //    void myfunction();
 
 //    void on_dateTimeEdit_dateTimeChanged(const QDateTime &dateTime);
-    void on_pushButton_6_clicked();
+    void on_paint_clicked();
 
+    void on_deleteNote_clicked();
 private:
     Ui::MainWindow *ui;
     setpassword *Setpassword;
     getpassword *Getpassword;
     PaintWindow *paintwindow;
-
 };
 #endif // MAINWINDOW_H
