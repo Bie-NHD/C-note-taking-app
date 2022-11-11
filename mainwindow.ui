@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1152</width>
+    <width>1159</width>
     <height>673</height>
    </rect>
   </property>
@@ -73,9 +73,9 @@ border-radius:15px;</string>
    <widget class="QFrame" name="frame_2">
     <property name="geometry">
      <rect>
-      <x>440</x>
+      <x>430</x>
       <y>60</y>
-      <width>501</width>
+      <width>511</width>
       <height>581</height>
      </rect>
     </property>
@@ -156,7 +156,7 @@ border-radius:15px;
      <property name="frameShadow">
       <enum>QFrame::Raised</enum>
      </property>
-     <widget class="QPushButton" name="pushButton_2">
+     <widget class="QPushButton" name="setPassword">
       <property name="geometry">
        <rect>
         <x>340</x>
@@ -172,7 +172,7 @@ border-radius:15px;
        <string>Lock</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="save">
       <property name="geometry">
        <rect>
         <x>430</x>
@@ -205,7 +205,7 @@ color: rgb(170, 0, 0);</string>
        <string>Pic</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_5">
+     <widget class="QPushButton" name="getPassword">
       <property name="geometry">
        <rect>
         <x>380</x>
@@ -237,11 +237,11 @@ color: rgb(170, 0, 0);</string>
        <string notr="true">color: rgb(170, 0, 0);</string>
       </property>
       <property name="text">
-       <string>Color</string>
+       <string/>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>text_color.png</normaloff>text_color.png</iconset>
+       <iconset resource="resource.qrc">
+        <normaloff>:/hinhanh/img/text_color.png</normaloff>:/hinhanh/img/text_color.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -331,7 +331,7 @@ color: rgb(170, 0, 0);</string>
        <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_6">
+     <widget class="QPushButton" name="paint">
       <property name="geometry">
        <rect>
         <x>230</x>
@@ -339,6 +339,9 @@ color: rgb(170, 0, 0);</string>
         <width>83</width>
         <height>29</height>
        </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">color: rgb(170, 0, 0);</string>
       </property>
       <property name="text">
        <string>Paint</string>
@@ -366,7 +369,7 @@ border:1px solid grey;</string>
      <string>Search your note</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="search">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -385,7 +388,7 @@ color: white;</string>
      <string>SEARCH</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="add">
     <property name="geometry">
      <rect>
       <x>460</x>
@@ -401,7 +404,7 @@ color: white;</string>
    <widget class="QPushButton" name="btnUndo">
     <property name="geometry">
      <rect>
-      <x>500</x>
+      <x>580</x>
       <y>20</y>
       <width>31</width>
       <height>31</height>
@@ -466,9 +469,24 @@ color: white;</string>
      </rect>
     </property>
    </widget>
+   <widget class="QPushButton" name="deleteNote">
+    <property name="geometry">
+     <rect>
+      <x>500</x>
+      <y>20</y>
+      <width>31</width>
+      <height>29</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>-</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <resources/>
+ <resources>
+  <include location="resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

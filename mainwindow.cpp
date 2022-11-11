@@ -37,8 +37,9 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    //Mở database
+    //Tạo giao diện ban đầu từ dữ liệu trong databse
 
+    //Mở database
     connOpen();
 
     //Tạo modal...
@@ -69,51 +70,52 @@ MainWindow::MainWindow(QWidget *parent)
     //Tạo khung danh sách note...
     QGridLayout *lay=new QGridLayout(this);
     QPushButton *content[2000];
+
     //Thêm các thành phần vào khu vực kéo chuột (scrollArea)
     for(int j=0;j<=modal1->rowCount()-1;j++)
     {
-    QString id=modal->record(j).value(0).toString();//(id)
-    QString title=modal1->record(j).value(0).toString();//(title)
-    QString contentString=modal2->record(j).value(0).toString();//(content)
+        QString id=modal->record(j).value(0).toString();//(id)
+        QString title=modal1->record(j).value(0).toString();//(title)
+        QString contentString=modal2->record(j).value(0).toString();//(content)
 
-    //Biến string thành giao diện
-    content[j]=new QPushButton(contentString);
-    content[j]->setProperty("id",id);
-    QLabel *lab=new QLabel("Content: "+contentString+".");
-    lab->setStyleSheet("color:white");
+        //Biến string thành giao diện
+        content[j]=new QPushButton(title);
+        content[j]->setProperty("id",id);
+        QLabel *lab=new QLabel(""+contentString+"...");
+        lab->setStyleSheet("color:white");
 
-    //Chia từng note trong danh sách ra bằng đường kẻ trắng
-    QFrame *line;
-    line = new QFrame();
-    line->setFrameShape(QFrame::HLine);
-    line->setFrameShadow(QFrame::Sunken);
-    line->setStyleSheet("background:white");
+        //Chia từng note trong danh sách ra bằng đường kẻ trắng
+        QFrame *line;
+        line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        line->setStyleSheet("background:white");
 
-    //Nổi hiệu ứng khi rê chuột tới cho nút title
-    content[j]->setObjectName("btnName_1");
-    content[j]->setStyleSheet(
-    "   QPushButton#btnName_1 {"
-    "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
-    " }"
-    " QPushButton#btnName_1:hover {"
-    "     color: yellow;font-size:25px;"
-    " }");
+        //Nổi hiệu ứng khi rê chuột tới cho nút title
+        content[j]->setObjectName("btnName_1");
+        content[j]->setStyleSheet(
+        "   QPushButton#btnName_1 {"
+        "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
+        " }"
+        " QPushButton#btnName_1:hover {"
+        "     color: yellow;font-size:25px;"
+        " }");
 
-    //Gắn giao diện với từng layout đã tạo
-    lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
-    lay->addWidget(content[j]);
-    lay->addWidget(lab);
-    lay->addWidget(line);
+        //Gắn giao diện với từng layout đã tạo
+        lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
+        lay->addWidget(content[j]);
+        lay->addWidget(lab);
+        lay->addWidget(line);
 
-     //Nhấn title sẽ thực hiện hàm onnameclicked
-     connect(content[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
-     //Bỏ layout vào khu vực kéo (scrollArea)
-     ui->scrollContents->setLayout(lay);
+        //Nhấn title sẽ thực hiện hàm onNameClicked
+        connect(content[j],SIGNAL(clicked()),this,SLOT(onNameClicked()));
+        //Bỏ layout vào khu vực kéo (scrollArea)
+        ui->scrollContents->setLayout(lay);
     }
     connClose();
     //Tắt mở các khung xung quanh
-    ui->frame_2->hide();
-    ui->frame_3->show();
+    ui->frame_2->hide();//khung note
+    ui->frame_3->show();//lớp phủ để che note
 }
 //Hàm hủy
 MainWindow::~MainWindow()
@@ -121,14 +123,91 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-QString contentText;
 //Gắn x bên header = 0
 int MainWindow::x=0;
+
 QPushButton *pButton[50];
 QString currentID;
+QString contentText;
 
+void MainWindow::refreshNoteList()
+{
+    connOpen();
 
-void MainWindow::onnameclicked()
+    QSqlQueryModel *modal = new QSqlQueryModel();
+    QSqlQueryModel *modal1= new QSqlQueryModel();
+    QSqlQueryModel *modal2= new QSqlQueryModel();
+
+    QSqlQuery *qry = new QSqlQuery(mydb);
+    QSqlQuery *qry1= new QSqlQuery(mydb);
+    QSqlQuery *qry2= new QSqlQuery(mydb);
+
+    qry->prepare("select id from note1");
+    qry1->prepare("select title from note1");
+    qry2->prepare("select content from note1");
+
+    qry->exec();
+    qry1->exec();
+    qry2->exec();
+
+    modal->setQuery(*qry);
+    modal1->setQuery(*qry1);
+    modal2->setQuery(*qry2);
+
+    //Xóa
+    if ( ui->scrollContents->layout() != NULL )
+    {
+        QLayoutItem* item;
+        while ( ( item = ui->scrollContents->layout()->takeAt( 0 ) ) != NULL )
+        {
+            delete item->widget();
+            delete item;
+        }
+        delete ui->scrollContents->layout();
+    }
+    //Tạo khung mới
+    QGridLayout *lay=new QGridLayout(this);
+    QPushButton *content[2000];
+
+    for(int j=0;j<=modal->rowCount()-1;j++)
+    {
+        QString id=modal->record(j).value(0).toString();//id
+        QString title=modal1->record(j).value(0).toString();//(title)
+        QString contentText=modal2->record(j).value(0).toString();//(content)
+
+        content[j]=new QPushButton(title);
+        content[j]->setProperty("id",id);
+        QLabel *lab=new QLabel(""+contentText+"...");
+        lab->setStyleSheet("color:white");
+
+        QFrame *line;
+        line = new QFrame();
+        line->setFrameShape(QFrame::HLine);
+        line->setFrameShadow(QFrame::Sunken);
+        line->setStyleSheet("background:white");
+
+        content[j]->setObjectName("btnName_1");
+        content[j]->setStyleSheet(
+        "   QPushButton#btnName_1 {"
+        "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
+        " }"
+        " QPushButton#btnName_1:hover {"
+        "     color: yellow;font-size:25px;"
+        " }");
+
+        lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
+        lay->addWidget(content[j]);
+        lay->addWidget(lab);
+        lay->addWidget(line);
+
+        connect(content[j],SIGNAL(clicked()),this,SLOT(onNameClicked()));
+        ui->scrollContents->setLayout(lay);
+        x=0;
+    }
+}
+
+//Mở note
+void MainWindow::onNameClicked()
 {
     //Hiện khung note
     ui->frame_2->show();
@@ -142,15 +221,15 @@ void MainWindow::onnameclicked()
     //Mỗi lần nhấn nút khác thì nút vừa nhấn trước đó sẽ quay về stylesheet mặc định như bên dưới
     if(x>0)
     {
-
-        pButton[x-1]->setObjectName("btnName_1");
-        pButton[x-1]->setStyleSheet("   QPushButton#btnName_1 {"
+    pButton[x-1]->setObjectName("btnName_1");
+    pButton[x-1]->setStyleSheet("QPushButton#btnName_1 {"
                                     "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
                                     " }"
                                     " QPushButton#btnName_1:hover {"
                                     "     color: yellow;font-size:25px;"
                                     " }");
-    }
+
+    } else { pButton[x]->setStyleSheet("color: yellow;font-size:25px;Text-align:left;font-family:century gothic");}
 
 
     //stylesheet cho nút để nhấn
@@ -182,7 +261,7 @@ void MainWindow::onnameclicked()
 }
 
 //Tìm kiếm
-void MainWindow::on_pushButton_clicked()
+void MainWindow::on_search_clicked()
 {
     connOpen();
     QSqlQueryModel *modal= new QSqlQueryModel();
@@ -246,8 +325,8 @@ void MainWindow::on_pushButton_clicked()
             lay1->addWidget(content[j]);
             lay1->addWidget(lab);
             lay1->addWidget(line);
-             //Nhấn title sẽ thực hiện hàm onnameclicked ( tạo kết nối signals & slots trong Qt )
-             connect(content[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
+             //Nhấn title sẽ thực hiện hàm onNameClicked ( tạo kết nối signals & slots trong Qt )
+             connect(content[j],SIGNAL(clicked()),this,SLOT(onNameClicked()));
              //Bỏ layout vào khu vực kéo (scrollArea)
              ui->scrollContents->setLayout(lay1);
             }
@@ -291,7 +370,7 @@ void MainWindow::on_pushButton_clicked()
             lay->addWidget(label);
             lay->addWidget(lab);
             lay->addWidget(line);
-            connect(label,SIGNAL(clicked()),this,SLOT(onnameclicked()));
+            connect(label,SIGNAL(clicked()),this,SLOT(onNameClicked()));
 
         }
     }
@@ -301,10 +380,9 @@ void MainWindow::on_pushButton_clicked()
     ui->scrollContents->setVisible(true);
     ui->scrollContents->show();
 }
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Hiển thị khung đặt khẩu để khóa note mình muốn
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::on_setPassword_clicked()
 {
     Setpassword = new setpassword(this);
     Setpassword->setGeometry(450,250,300,300);
@@ -312,7 +390,7 @@ void MainWindow::on_pushButton_2_clicked()
 }
 
 //Hiển thị khung mở khóa note
-void MainWindow::on_pushButton_5_clicked()
+void MainWindow::on_getPassword_clicked()
 {
     Getpassword = new getpassword(this);
     Getpassword->setGeometry(450,250,300,300);
@@ -320,151 +398,64 @@ void MainWindow::on_pushButton_5_clicked()
 }
 
 //Thêm note trống mới
-void MainWindow::on_pushButton_3_clicked()
+void MainWindow::on_add_clicked()
 {
 
-   QString title = ui->title->toPlainText();
-   QString content = ui->content->toPlainText();
-   if(!QString(title).isEmpty() || !QString(content).isEmpty())
-   {
-       ui->frame_2->hide();
-       ui->title->clear();
-       ui->content->clear();
-       ui->frame_2->show();
-
-   } else ui->frame_2->show();
+    QString title = ui->title->toPlainText();
+    QString content = ui->content->toPlainText();
+    currentID= "";
+    ui->title->clear();
+    ui->content->clear();
+    ui->frame_2->show();
 }
 //Lưu note vào database
-void MainWindow::on_pushButton_4_clicked()
+void MainWindow::on_save_clicked()
 {
     QString title = ui->title->toPlainText();
     QString content = ui->content->toPlainText();
 
 
-     if(!QString(title).isEmpty())
-     {
+    if(!QString(title).isEmpty())
+    {
         connOpen();
         QSqlQuery qry;
         qry.prepare("update note1 set title ='"+title+"'where id='"+currentID+"'");
         if(qry.exec())
         {
             connClose();
+        }
+    }
 
-         }
+    if(currentID != "")
+    {
+        connOpen();
+        QSqlQuery qry;
+        qry.prepare("update note1 set content ='"+content+"'where id='"+currentID+"'");
+        qry.exec();
+        refreshNoteList();
+        connClose();
+    } else
+    {
+        connOpen();
+        QSqlQuery qry;
+        qry.prepare("INSERT INTO note1 (title, content)" "VALUES (:title, :content)");
+        qry.bindValue(":title", title);
+        qry.bindValue(":content", content);
+        qry.exec();
+        refreshNoteList();
+        connClose();
+    }
 
-            if(!QString(content).isEmpty())
-            {
-                connOpen();
-                QSqlQuery qry;
-                qry.prepare("update note1 set content ='"+content+"'where id='"+currentID+"'");
-                if(qry.exec()){
+}
 
-                     qDebug()<<("update dc content");
-
-                }
-
-                qry.prepare("select * from note1 where id='"+currentID+"'");
-                if(qry.exec())
-             {       while(qry.next())
-                    {
-                        QSqlQueryModel *modal = new QSqlQueryModel();
-                        QSqlQueryModel *modal1= new QSqlQueryModel();
-                        QSqlQueryModel *modal2= new QSqlQueryModel();
-                        //Tạo query...
-                        QSqlQuery *qry = new QSqlQuery(mydb);
-                        QSqlQuery *qry1= new QSqlQuery(mydb);
-                        QSqlQuery *qry2= new QSqlQuery(mydb);       
-                        //Chọn data gắn vào...
-                        qry->prepare("select id from note1");
-                        qry1->prepare("select title from note1");
-                        qry2->prepare("select content from note1");
-                        //Thực hiện query...
-                        qry->exec();
-                        qry1->exec();
-                        qry2->exec();
-
-                        //Gắn query với modal...
-                        modal->setQuery(*qry);
-                        modal1->setQuery(*qry1);
-                        modal2->setQuery(*qry2);
-
-                        if ( ui->scrollContents->layout() != NULL )
-                        {
-                            QLayoutItem* item;
-                            while ( ( item = ui->scrollContents->layout()->takeAt( 0 ) ) != NULL )
-                            {
-                                delete item->widget();
-                                delete item;
-                            }
-                            delete ui->scrollContents->layout();
-                        }
-                        //Tạo khung mới
-                        QGridLayout *lay=new QGridLayout(this);
-                        QPushButton *content[2000];
-
-                        for(int j=0;j<=modal->rowCount()-1;j++)
-                        {
-                        QString id=modal->record(j).value(0).toString();//id
-                        QString title=modal1->record(j).value(0).toString();//(title)
-                        QString contentText=modal2->record(j).value(0).toString();//(content)
-
-
-
-                        //Biến string thành giao diện
-
-                        content[j]=new QPushButton(contentText);
-                        content[j]->setProperty("id",id);
-                        QLabel *lab=new QLabel("Content: "+contentText+".");
-                        lab->setStyleSheet("color:white");
-
-                        //Chia từng mini note ra bằng đường kẻ trắng
-                        QFrame *line;
-                        line = new QFrame();
-                        line->setFrameShape(QFrame::HLine);
-                        line->setFrameShadow(QFrame::Sunken);
-                        line->setStyleSheet("background:white");
-
-                        //Nổi hiệu ứng khi rê chuột tới cho nút title
-                        content[j]->setObjectName("btnName_1");
-                        content[j]->setStyleSheet(
-                        "   QPushButton#btnName_1 {"
-                        "     background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:orange;"
-                        " }"
-                        " QPushButton#btnName_1:hover {"
-                        "     color: yellow;font-size:25px;"
-                        " }");
-
-                        //Gắn giao diện với từng layout đã tạo
-                        lab->setStyleSheet("background:transparent; Text-align:left;font-family:century gothic;font-size:18px; color:white");
-                        lay->addWidget(content[j]);
-                        lay->addWidget(lab);
-                        lay->addWidget(line);
-                         //Nhấn title sẽ thực hiện hàm onnameclicked
-                         connect(content[j],SIGNAL(clicked()),this,SLOT(onnameclicked()));
-                         //Bỏ layout vào khu vực kéo (scrollArea)
-                         ui->scrollContents->setLayout(lay);
-                        }
-                        connClose();
-                    }
-
-                }
-    } else {
-
-            connOpen();
-            QSqlQuery qry;
-            qry.prepare("INSERT INTO note1 (title, content)" "VALUES (:title, :content)");
-            qry.bindValue(":title", title);
-            qry.bindValue(":content", content);
-
-            if(qry.exec()){
-                // Xet dieu kien cho du lieu duoc nhap vao
-                    QMessageBox::information(this, "Đã được thêm vào", "Dữ liệu được thêm vào thành công");
-                } else {
-                    QMessageBox::information(this, "Không được thêm vào", "Dữ liệu không được thêm vào");
-                }
-            }
-
-     }
+void MainWindow::on_deleteNote_clicked()
+{
+    connOpen();
+    QSqlQuery qry;
+    qry.prepare("delete from note1 where id="+currentID+" ");
+    qry.exec();
+    refreshNoteList();
+    ui->frame_2->hide();
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -478,16 +469,19 @@ void MainWindow::on_btnTextColor_clicked()
             ui->content->setTextColor(color);
         }
 }
+
 //Quay lại hành động
 void MainWindow::on_btnUndo_clicked()
 {
      ui->content->undo();
 }
+
 //Tiến tới hành động
 void MainWindow::on_btnRedo_clicked()
 {
     ui->content->redo();
 }
+
 //In đậm
 void MainWindow::on_toolButton_bold_clicked()
 {
@@ -497,6 +491,7 @@ void MainWindow::on_toolButton_bold_clicked()
        ui->title->setFont(font);
        ui->content->setFont(font);
 }
+
 //In nghiêng
 void MainWindow::on_toolButton_italic_clicked()
 {
@@ -531,7 +526,7 @@ void MainWindow::on_toolButton_plus_clicked()
 }
 
 // Tạo khung vẽ
-void MainWindow::on_pushButton_6_clicked()
+void MainWindow::on_paint_clicked()
 {
     paintwindow = new PaintWindow(this);
     paintwindow->show();
