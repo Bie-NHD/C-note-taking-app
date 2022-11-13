@@ -110,7 +110,7 @@ border-radius:15px;
      <property name="font">
       <font>
        <family>8514oem</family>
-       <pointsize>25</pointsize>
+       <pointsize>20</pointsize>
       </font>
      </property>
      <property name="placeholderText">
@@ -448,7 +448,7 @@ color: white;</string>
      </rect>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>0</x>

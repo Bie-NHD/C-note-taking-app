@@ -25,21 +25,21 @@ void setpassword::on_submitButton_clicked()
             if(!connOpen()){
                  QMessageBox::information(this, "Không mở được cơ sở dữ liệu", "Dữ liệu không được thêm vào");
             }
-            if(QString(password).isEmpty() ){
+            if(QString(password).isEmpty()){
                 QMessageBox::information(this, "Không có mật khẩu", "Yêu cầu nhập vào mật khẩu");
-            } else {
-            // Tạo truy vấn
-            QSqlQuery qry;
-            qry.prepare("INSERT INTO password (password)" "VALUES (:password)");
-            qry.bindValue(":password", password);
+            }else{
+                // Tạo truy vấn
+                QSqlQuery qry;
+                qry.prepare("INSERT INTO password (password)" "VALUES (:password)");
+                qry.bindValue(":password", password);
 
-            if(qry.exec()){
-                // Xét điều kiện cho dữ liệu được nhập vào
-                    QMessageBox::information(this, "Đã được thêm vào", "Dữ liệu được thêm vào thành công");
-                } else {
-                    QMessageBox::information(this, "Không được thêm vào", "Dữ liệu không được thêm vào");
+                if(qry.exec()){
+                    // Xét điều kiện cho dữ liệu được nhập vào
+                    QMessageBox::information(this, "Đã thêm mật khẩu", "Mật khẩu được cài đặt thành công");
+                    hide();
+                }else{
+                    QMessageBox::information(this, "Không thành công", "Mật khẩu được cài đặt vào không thành công");
                 }
             }
-            hide();
 }
 

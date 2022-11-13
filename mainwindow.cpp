@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "setpassword.h"
+#include "getpassword.h"
 #include "btntextcolor.h"
 #include "scribblearea.h"
 

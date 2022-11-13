@@ -31,10 +31,10 @@ public:
        mydb.setDatabaseName("D:/Study/Qt/db/mydb_2.sqlite");
 
        if(!mydb.open()){
-           qDebug()<<("File not opened");
+           qDebug()<<("File không được mở");
                       return false;
        }else {
-           qDebug()<<("File opened");
+           qDebug()<<("File đã được mở");
                      return true;
        }
     }

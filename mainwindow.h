@@ -44,14 +44,14 @@ public:
     }
 
     bool connOpen(){
-        mydb=QSqlDatabase::addDatabase("QSQLITE");
+        mydb = QSqlDatabase::addDatabase("QSQLITE");
         mydb.setDatabaseName("C:/Users/tminh/OneDrive/Máy tính/Db/mydb.sqlite");
 
         if(!mydb.open()){
-            qDebug()<<("File not opened");
+            qDebug()<<("File không được mở");
                       return false;
         }else {
-            qDebug()<<("File opened");
+            qDebug()<<("File đã được mở");
                      return true;
         }
      }
